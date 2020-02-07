@@ -1,0 +1,29 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+---
+title: "dataviz-assignment"
+author: "Ritika Iyer"
+date: "2/7/2020"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+```
+
+```{r load-packages, message = FALSE}
+library(tidyverse)
+library(haven)
+```
+
+```{r load-data, message = FALSE}
+younglives <- read_csv('younglives-data.csv')
+```
+
+```{r glimpse, message = FALSE}
+glimpse(younglives)
+```
