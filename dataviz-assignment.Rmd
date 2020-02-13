@@ -21,6 +21,7 @@ library(readxl)
 younglives_data <- read_excel("younglives-data.xlsx")
 ```
 
+
 ## Introduction
 The data used in this assignment is from the Young Lives: an International Study of Childhood Poverty project, collected by the U.K. Data Service. This is a longitudinal dataset following two cohorts of children every 3-4 years from 2002 to 2016 in India. The specific data used in this project is from 2006 and focuses on two states on India's east coast, Telangana and Andhra Pradesh.
 
@@ -29,6 +30,7 @@ The project’s key objectives are to “improve the understanding of causes and
 ```{r glimpse, message = FALSE}
 glimpse(younglives_data)
 ```
+
 
 ## Child Body Mass Index and Household Food Expenditures
 This first visualization looks at the relationship between household expenditure on food and their children's Body Mass Index (BMI). I would expect that children with higher BMIs are from households that spend more on food. In the context of poor, often rural Indian households, increased expenditure on food can imply more purchases of healthier and fresher foods which are usually more expensive.
@@ -52,4 +54,29 @@ ggplot(data = younglives_data,
        x = "Body Mass Index (BMI)",
        y = "Annual Food Expenditures (in Rupees)")
 ```
+
+
+## Wealth and Housing Quality in Rural versus Urban Areas
+This next visualization looks at the differences in the relationship between a wealth index and housing quality index in rural versus urban areas. We see that in rural areas, the slope of the fitted line is steeper than that of urban areas - this may imply that the impact of an increase in wealth has a much larger potential impact on housing quality (and vice versa) than the same increase in wealth for an urban household. 
+
+Additionally, the graph shows that urban households are overall slightly richer and live in higher quality housing than rural households. This is noted by the higher concentration of points in the lower left sections of the rural graph, as compared to the urban graph. When considering policy programs at a state- or country-level, it is important to keep in mind that livelihoods and the potential impact of a policy in improving those livelihoods can be very different across rural and urban areas. 
+
+```{r viz2-code, message=FALSE}
+ggplot(data = younglives_data,
+       mapping = aes(x = wi_r2, y = hq_r2)) +
+  geom_smooth(method="loess", size = 0.5, linetype="longdash",
+              color = "blue", se = FALSE) +
+  geom_point(alpha = 0.2, color = "orange", size=1) +
+  facet_wrap(~typesite_r2, ncol=2) +
+  labs(y = "Housing Quality Index", x = "Wealth Index") +
+  theme_minimal() +
+  theme(plot.margin = unit(c(1,1,1,1), "cm")) +
+  labs(title = 
+         paste("Wealth and housing quality varies across rural, urban areas in India"),
+       subtitle = "Telangana parents have slightly higher expectations for children to attend university",
+       caption = "Source: Young Lives Survey, 2006",
+       x = "Wealth Index",
+       y = "Housing Quality Index")
+```
+
 
