@@ -27,8 +27,8 @@ The data used in this assignment is from the Young Lives: an International Study
 
 The project’s key objectives are to “improve the understanding of causes and consequences of childhood poverty and to inform and the development and implementation of future policies and practices that will reduce childhood poverty” (Young Lives). This project will discuss a few of the key variables and relationships relevant to childhood poverty in India.
 
-```{r glimpse, message = FALSE}
-glimpse(younglives_data)
+```{r viewdata, message = FALSE}
+younglives_data
 ```
 
 
@@ -73,10 +73,28 @@ ggplot(data = younglives_data,
   theme(plot.margin = unit(c(1,1,1,1), "cm")) +
   labs(title = 
          paste("Wealth and housing quality varies across rural, urban areas in India"),
-       subtitle = "Telangana parents have slightly higher expectations for children to attend university",
+       subtitle = "More urban households have higher wealth, housing quality",
        caption = "Source: Young Lives Survey, 2006",
        x = "Wealth Index",
        y = "Housing Quality Index")
 ```
 
 
+## Parental Attitudes on Children's Educational Attainment, by Region
+The visualization below seeks to gain insight on how parents view their childrens' educational future across regions in East India. We see that most parents in all regions want their children to attend University. However, the second highest group in all regions is that parents hope their children will complete at least up till 10th grade. 
+
+Comparatively, parents in Telangana seem to have more confidence that their children will attend University. Coastal Andhra Pradesh seems more split. This type of visualization is important from a policy perspective because it shows differences in culture and attitudes across seemingly similar geographic locations. The regions presented are relatively close to each other, but still show different outcomes. In considering the targeting of a policy solution, it is critical to take into account regional variation in the scope and extremity of the policy problem itself. 
+
+```{r viz3-code, message=FALSE}
+ggplot(data = younglives_data, 
+         aes(gradlike)) +
+  geom_bar() +
+  coord_flip() + 
+  facet_wrap(~region_r2, ncol=3) +
+  labs(title = 
+         paste("Parental attitudes on children's educational attainment vary by region"),
+       subtitle = "Telangana parents have slightly higher expectations for children to attend university",
+       caption = "Source: Young Lives Survey, 2006",
+       x = "Projected Children's Educational Attainment",
+       y = "Number of Households")
+```
