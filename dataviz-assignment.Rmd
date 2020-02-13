@@ -100,7 +100,7 @@ ggplot(data = younglives_data,
 ```
 
 
-## Cognitive and PPVT Test Scores by Natural Disaster Shock Exposure
+## Test Scores by Children's Natural Disaster Shock Exposure
 The final visualization presented below plots student test scores on two different tests - a Cognitive Test on the x-axis and the Peabody Picture Vocabulary Test (PPVT) on the y-axis. It shows the test scores for two groups of students - the left panel shows educational outcomes for students that have never experienced a natural disaster shock (like a drought, flood, or crop failure).
 
 The right panel (=1) shows educational outcomes for students that have reported experiencing an adverse climate shock. Looking at the slopes of the fitted lines, we see a slightly steeper and higher line on the left panel (=0) for the non-exposed students. As we might expect, students exposed to a natural disaster shock perform worse on both test, on average, than their otherwise similar peers who have not experienced a natural disaster shock. 
@@ -116,7 +116,7 @@ ggplot(data = younglives_data,
   facet_wrap(~r2_shock_all, ncol=2) +
   labs(title = 
          paste("Cognitive and PPVT Test Scores by Natural Disaster Shock Exposure"),
-       subtitle = "Shock-exposed students (=1) perform worse on both tests, on average",
+       subtitle = "Shock-exposed students perform worse on both tests, on average",
        caption = "Source: Young Lives Survey, 2006",
        x = "Adjusted Scores, Cognitive Test",
        y = "Adjusted Scores, Peabody Picture Vocabulary Test") +
