@@ -98,3 +98,28 @@ ggplot(data = younglives_data,
        x = "Projected Children's Educational Attainment",
        y = "Number of Households")
 ```
+
+
+## Cognitive and PPVT Test Scores by Natural Disaster Shock Exposure
+The final visualization presented below plots student test scores on two different tests - a Cognitive Test on the x-axis and the Peabody Picture Vocabulary Test (PPVT) on the y-axis. It shows the test scores for two groups of students - the left panel shows educational outcomes for students that have never experienced a natural disaster shock (like a drought, flood, or crop failure).
+
+The right panel (=1) shows educational outcomes for students that have reported experiencing an adverse climate shock. Looking at the slopes of the fitted lines, we see a slightly steeper and higher line on the left panel (=0) for the non-exposed students. As we might expect, students exposed to a natural disaster shock perform worse on both test, on average, than their otherwise similar peers who have not experienced a natural disaster shock. 
+
+This is important from a policy perspective because it highlights the short- and potentially long-term negative impacts of disasters on schooling and learning outcomes. In India, as natural disasters become increasingly common in vulnerable areas due to climate change, utilizing policy to protect children from falling behind in school is especially important from a human capital development perspective. 
+
+```{r viz4-code, message=FALSE}
+ggplot(data = younglives_data, 
+       mapping = aes(x=r2cog_rasch, 
+                     y=r2ppvt_rasch)) +
+  geom_point(size = 0.4, color = "black") +
+  geom_smooth(method="lm", size = 0.5, color = "red", se = FALSE) +
+  facet_wrap(~r2_shock_all, ncol=2) +
+  labs(title = 
+         paste("Cognitive and PPVT Test Scores by Natural Disaster Shock Exposure"),
+       subtitle = "Shock-exposed students (=1) perform worse on both tests, on average",
+       caption = "Source: Young Lives Survey, 2006",
+       x = "Adjusted Scores, Cognitive Test",
+       y = "Adjusted Scores, Peabody Picture Vocabulary Test") +
+  theme(legend.position = "bottom",
+        legend.title=element_blank()) 
+```
