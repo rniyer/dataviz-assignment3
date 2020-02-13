@@ -2,14 +2,15 @@
 output: html_document
 editor_options: 
   chunk_output_type: console
----
-
----
 title: "dataviz-assignment"
 author: "Ritika Iyer"
 date: "2/7/2020"
-output: html_document
 ---
+
+# Ritika Iyer, GUID: 842099468 
+# February 14, 2020
+# Data Science for Public Policy, Assignment 3
+# Data Visualization - Young Lives Data
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE) 
@@ -21,9 +22,19 @@ library(haven)
 ```
 
 ```{r load-data, message = FALSE}
-younglives <- read_csv('younglives-data.csv')
+younglives_data <- read_excel("younglives-data.xlsx")
 ```
 
 ```{r glimpse, message = FALSE}
 glimpse(younglives)
 ```
+
+
+
+
+
+
+
+
+
+
